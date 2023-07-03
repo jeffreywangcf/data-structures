@@ -619,4 +619,19 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         cur.setRightChild(null);
         return successor;
     }
+
+    /**
+     * convert a dictionary to string
+     * @return string representation
+     */
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("Tree [%d]: ", this.size()));
+        for(Pair<K, V> pair: this){
+            builder.append(pair.toString()).append(", ");
+        }
+        String ret = builder.toString();
+        return ret.substring(0, ret.length() - 2);
+    }
 }

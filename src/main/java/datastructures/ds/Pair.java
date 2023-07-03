@@ -54,7 +54,7 @@ public class Pair<K, V>{
 
     /**
      * convert pair to a string
-     * @return string representation 
+     * @return string representation
      */
     @Override
     public String toString(){
