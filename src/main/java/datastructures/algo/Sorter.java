@@ -1,6 +1,6 @@
 package datastructures.algo;
 
-import datastructures.util.Util;
+import datastructures.util.Utils;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class Sorter<T extends Comparable<T>>{
                     smallest = j;
                 }
             }
-            Util.swap(arr, smallest, i);
+            Utils.swap(arr, smallest, i);
         }
     }
 
@@ -173,7 +173,7 @@ public class Sorter<T extends Comparable<T>>{
      * @return the index of the pivot after partition
      */
     private int partition(ArrayList<T> arr, int l, int r){
-        Util.swap(arr, l, (int) (Math.random() * (r - l)) + l);
+        Utils.swap(arr, l, (int) (Math.random() * (r - l)) + l);
         T cur = arr.get(l);
 
         int lp = l + 1;  // [l...lp) <= v
@@ -189,12 +189,12 @@ public class Sorter<T extends Comparable<T>>{
             if(lp >= rp){
                 break;
             }
-            Util.swap(arr, lp, rp - 1);
+            Utils.swap(arr, lp, rp - 1);
             lp += 1;
             rp -= 1;
         }
 
-        Util.swap(arr, l, rp - 1);
+        Utils.swap(arr, l, rp - 1);
         return rp - 1;
     }
 
@@ -208,7 +208,7 @@ public class Sorter<T extends Comparable<T>>{
             this.shiftDown(arr, i, arr.size());
         }
         for(int i = arr.size() - 1; i > 0; i--){
-            Util.swap(arr, 0, i);
+            Utils.swap(arr, 0, i);
             this.shiftDown(arr, 0, i);
         }
     }
@@ -233,7 +233,7 @@ public class Sorter<T extends Comparable<T>>{
             if(i == maxIndex){
                 break;
             }
-            Util.swap(arr, i, maxIndex);
+            Utils.swap(arr, i, maxIndex);
             i = maxIndex;
         }
     }

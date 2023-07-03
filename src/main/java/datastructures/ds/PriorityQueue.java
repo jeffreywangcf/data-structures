@@ -1,6 +1,6 @@
 package datastructures.ds;
 
-import datastructures.util.Util;
+import datastructures.util.Utils;
 
 import java.util.ArrayList;
 
@@ -97,7 +97,7 @@ public class PriorityQueue<T extends Comparable<T>>{
      */
     private void shiftUp(int i){
         while(i > 1 && this.compare(i, i / 2)){
-            Util.swap(this.data, i, i / 2);
+            Utils.swap(this.data, i, i / 2);
             i = i / 2;
         }
     }
@@ -123,7 +123,7 @@ public class PriorityQueue<T extends Comparable<T>>{
                 break;
             }
 
-            Util.swap(this.data, i, maxIndex);
+            Utils.swap(this.data, i, maxIndex);
             i = maxIndex;
         }
     }
@@ -157,7 +157,7 @@ public class PriorityQueue<T extends Comparable<T>>{
      */
     public T pop(){
         T ret = this.peek();
-        Util.swap(this.data, 1, this.size());
+        Utils.swap(this.data, 1, this.size());
         this.data.remove(this.size());
         this.shiftDown(1);
         return ret;

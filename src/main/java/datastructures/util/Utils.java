@@ -1,17 +1,11 @@
 package datastructures.util;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * represents a main.java.util class
+ * represents a utility class
  */
-public class Util{
-
-    /**
-     * main.java.util class should not be initialized
-     */
-    private Util(){
-    }
+public abstract class Utils {
 
     /**
      * swap two elements in given array
@@ -21,7 +15,7 @@ public class Util{
      * @param b   index of element b
      * @param <T> the type of data
      */
-    public static <T> void swap(ArrayList<T> arr, int a, int b){
+    public static <T> void swap(List<T> arr, int a, int b){
         T temp = arr.get(a);
         arr.set(a, arr.get(b));
         arr.set(b, temp);
