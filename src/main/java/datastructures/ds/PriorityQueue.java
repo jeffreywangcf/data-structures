@@ -19,7 +19,7 @@ public class PriorityQueue<T extends Comparable<T>>{
     /**
      * array that stores data in the heap starting at index = 1 for convenience
      */
-    private ArrayList<T> data;
+    private final ArrayList<T> data;
 
     /**
      * default constructor to create an empty priority queue

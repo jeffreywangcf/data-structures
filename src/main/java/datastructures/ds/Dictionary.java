@@ -3,8 +3,8 @@ package datastructures.ds;
 // TODO: implement a deque
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -21,7 +21,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of key
      * @param <V> type of value
      */
-    private class TreeNode<K extends Comparable<K>, V>{
+    protected class TreeNode<K extends Comparable<K>, V>{
         private final Pair<K, V> pair;
         private TreeNode<K, V> leftChild, rightChild;
 
@@ -106,7 +106,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         }
     }
 
-    private TreeNode<K, V> root;
+    protected TreeNode<K, V> root;
     private int count;
 
     /**
@@ -123,7 +123,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param keys   an array of keys
      * @param values an array of values
      */
-    public Dictionary(ArrayList<K> keys, ArrayList<V> values){
+    public Dictionary(List<K> keys, List<V> values){
         this();
         if(keys.size() != values.size()){
             throw new IllegalArgumentException("length of keys should match length of values!");
@@ -171,7 +171,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         InOrderIterator(TreeNode<K, V> root, boolean reverse){
             this.reverse = reverse;
             this.workList = new ArrayDeque<>();
-            this.addChildren(root);
+            if(root != null){
+                this.addChildren(root);
+            }
         }
 
         /**
@@ -241,12 +243,12 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     }
 
     /**
-     * represents a breadth first iterator for tree data structure
+     * represents a level order (breadth first) iterator for tree data structure
      *
      * @param <K> type of the key
      * @param <V> type of the value
      */
-    private class BreadthFirstIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
+    private class LevelOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
 
@@ -255,9 +257,11 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          *
          * @param root the root of the tree
          */
-        BreadthFirstIterator(TreeNode<K, V> root){
+        LevelOrderIterator(TreeNode<K, V> root){
             this.workList = new ArrayDeque<>();
-            this.workList.addFirst(root);
+            if(root != null){
+                this.workList.addFirst(root);
+            }
         }
 
         /**
@@ -292,12 +296,12 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     }
 
     /**
-     * get the breadth first iterator of the dictionary
+     * get the level order (breadth first) iterator of the dictionary
      *
      * @return iterator
      */
-    public Iterator<Pair<K, V>> getBreadthFirstIterator(){
-        return new BreadthFirstIterator<>(this.root);
+    public Iterator<Pair<K, V>> getLevelOrderIterator(){
+        return new LevelOrderIterator<>(this.root);
     }
 
     /**
@@ -317,7 +321,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          */
         PreOrderIterator(TreeNode<K, V> root){
             this.workList = new ArrayDeque<>();
-            this.workList.addFirst(root);
+            if(root != null){
+                this.workList.addFirst(root);
+            }
         }
 
         /**
@@ -369,7 +375,6 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     private class PostOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
-        private TreeNode<K, V> current;
 
         /**
          * constructor to create a post order iterator
@@ -378,20 +383,19 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          */
         PostOrderIterator(TreeNode<K, V> root){
             this.workList = new ArrayDeque<>();
-            this.current = root;
-            this.addChildren();
-        }
-
-        /**
-         * helper function to recursively add node and right child to workList
-         */
-        private void addChildren(){
-            while(this.current != null){
-                if(this.current.getRightChild() != null){
-                    this.workList.addFirst(this.current.getRightChild());
+            ArrayDeque<TreeNode<K, V>> s = new ArrayDeque<>();
+            if(root != null){
+                s.addFirst(root);
+            }
+            while(!s.isEmpty()){
+                TreeNode<K, V> top = s.removeFirst();
+                this.workList.addFirst(top);
+                if(top.getLeftChild() != null){
+                    s.addFirst(top.getLeftChild());
                 }
-                this.workList.addFirst(this.current);
-                this.current = this.current.getLeftChild();
+                if(top.getRightChild() != null){
+                    s.addFirst(top.getRightChild());
+                }
             }
         }
 
@@ -415,9 +419,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
             if(!this.hasNext()){
                 throw new IndexOutOfBoundsException("no more elements!");
             }
-            // TODO
-
-            return null;
+            return this.workList.removeFirst().getPair();
         }
     }
 
@@ -613,7 +615,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         //current node has both left and right child
         TreeNode<K, V> successor = this.getMin(cur.getRightChild());
         this.count += 1;
-        successor.setRightChild(this.remove(successor, successor.getKey()));
+        successor.setRightChild(this.remove(cur.getRightChild(), successor.getKey()));
         successor.setLeftChild(cur.getLeftChild());
         cur.setLeftChild(null);
         cur.setRightChild(null);

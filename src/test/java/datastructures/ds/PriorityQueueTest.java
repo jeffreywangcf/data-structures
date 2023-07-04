@@ -7,16 +7,19 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class PriorityQueueTest{
-    PriorityQueue<Integer> emptyPQ;
-    PriorityQueue<Integer> minPQ1;
-    PriorityQueue<Integer> minPQ2;
-    PriorityQueue<Integer> minPQ3;
-    PriorityQueue<Integer> minPQ4;
-    PriorityQueue<Integer> minPQ5;
-    PriorityQueue<Integer> maxPQ;
+public class PriorityQueueTest{
+    private PriorityQueue<Integer> emptyPQ;
+    private PriorityQueue<Integer> minPQ1;
+    private PriorityQueue<Integer> minPQ2;
+    private PriorityQueue<Integer> minPQ3;
+    private PriorityQueue<Integer> minPQ4;
+    private PriorityQueue<Integer> minPQ5;
+    private PriorityQueue<Integer> maxPQ;
 
     @BeforeEach
     public void setUp(){

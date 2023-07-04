@@ -13,12 +13,12 @@ public class DisjointSet{
      * negative value: size of the set
      * positive value: parent of the current index
      */
-    private ArrayList<Integer> parents;
+    private final ArrayList<Integer> parents;
 
     /**
      * array to store the rank (height) of an index
      */
-    private ArrayList<Integer> rank;
+    private final ArrayList<Integer> rank;
 
     /**
      * default constructor to initialize an empty disjoint set

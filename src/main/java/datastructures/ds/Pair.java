@@ -7,8 +7,8 @@ package datastructures.ds;
  * @param <V> type of second
  */
 public class Pair<K, V>{
-    K first;
-    V second;
+    private K first;
+    private V second;
 
     /**
      * default constructor
@@ -58,6 +58,19 @@ public class Pair<K, V>{
      */
     @Override
     public String toString(){
-        return String.format("(%s: %s) ", this.first.toString(), this.second.toString());
+        return String.format("(%s: %s)", this.first.toString(), this.second.toString());
+    }
+
+    /**
+     * determines if the given object is the same as current
+     * @param other other object
+     * @return true if key and value are equal
+     */
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Pair<?, ?> that){
+            return this.first.equals(that.first) && this.second.equals(that.second);
+        }
+        return false;
     }
 }
