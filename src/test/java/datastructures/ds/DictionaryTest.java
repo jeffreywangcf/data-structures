@@ -1,8 +1,10 @@
 package datastructures.ds;
 
+import datastructures.Driver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -166,24 +168,24 @@ public class DictionaryTest{
     public void testGetMax(){
         assertNull(this.emptyDict.getMax());
         this.emptyDict.insert("a", -1);
-        assertEquals(this.emptyDict.getMax(), -1);
-        assertEquals(this.dict1.getMax(), 3);
+        assertEquals(this.emptyDict.getMax().getSecond(), -1);
+        assertEquals(this.dict1.getMax().getSecond(), 3);
         this.dict1.insert("aa", 100);
-        assertEquals(this.dict1.getMax(), 3);
+        assertEquals(this.dict1.getMax().getSecond(), 3);
         this.dict1.remove("kiwi");
-        assertEquals(this.dict1.getMax(), 5);
+        assertEquals(this.dict1.getMax().getSecond(), 5);
     }
 
     @Test
     public void testGetMin(){
         assertNull(this.emptyDict.getMin());
         this.emptyDict.insert("a", -1);
-        assertEquals(this.emptyDict.getMin(), -1);
-        assertEquals(this.dict1.getMin(), 2);
+        assertEquals(this.emptyDict.getMin().getSecond(), -1);
+        assertEquals(this.dict1.getMin().getSecond(), 2);
         this.dict1.insert("zz", 100);
-        assertEquals(this.dict1.getMin(), 2);
+        assertEquals(this.dict1.getMin().getSecond(), 2);
         this.dict1.remove("apple");
-        assertEquals(this.dict1.getMin(), 1);
+        assertEquals(this.dict1.getMin().getSecond(), 1);
     }
 
     @Test
@@ -223,5 +225,13 @@ public class DictionaryTest{
         assertEquals(this.emptyDict.toString(), "Tree [0]");
         assertEquals(this.dict1.toString(), "Tree [7]: (apple: 2), (banana: 1), (carrot: 6), (donut: 4), "
                 + "(egg: 0), (garlic: 5), (kiwi: 3)");
+    }
+
+    @Test
+    public void testEfficiency(){
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Dictionary] test BST by doing a word count of bible (667,125 words)");
+            Driver.wordCounterBST();
+        });
     }
 }

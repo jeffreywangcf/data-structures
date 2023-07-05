@@ -3,16 +3,18 @@ package datastructures.ds;
 
 /**
  * represents a pair of data
- * @param <K> type of first
+ *
+ * @param <K> type of first, must be comparable
  * @param <V> type of second
  */
-public class Pair<K, V>{
+public class Pair<K extends Comparable<K>, V> implements Comparable<Pair<K, V>>{
     private K first;
     private V second;
 
     /**
      * default constructor
-     * @param first data of first
+     *
+     * @param first  data of first
      * @param second data of second
      */
     public Pair(K first, V second){
@@ -22,6 +24,7 @@ public class Pair<K, V>{
 
     /**
      * getter for first
+     *
      * @return first
      */
     public K getFirst(){
@@ -30,6 +33,7 @@ public class Pair<K, V>{
 
     /**
      * setter for first
+     *
      * @param first new value
      */
     public void setFirst(K first){
@@ -38,6 +42,7 @@ public class Pair<K, V>{
 
     /**
      * getter for second
+     *
      * @return second
      */
     public V getSecond(){
@@ -46,6 +51,7 @@ public class Pair<K, V>{
 
     /**
      * setter for second
+     *
      * @param second second
      */
     public void setSecond(V second){
@@ -54,6 +60,7 @@ public class Pair<K, V>{
 
     /**
      * convert pair to a string
+     *
      * @return string representation
      */
     @Override
@@ -63,6 +70,7 @@ public class Pair<K, V>{
 
     /**
      * determines if the given object is the same as current
+     *
      * @param other other object
      * @return true if key and value are equal
      */
@@ -72,5 +80,16 @@ public class Pair<K, V>{
             return this.first.equals(that.first) && this.second.equals(that.second);
         }
         return false;
+    }
+
+    /**
+     * compare the current pair to another pair by first
+     *
+     * @param that the object to be compared.
+     * @return difference
+     */
+    @Override
+    public int compareTo(Pair<K, V> that){
+        return this.first.compareTo(that.first);
     }
 }

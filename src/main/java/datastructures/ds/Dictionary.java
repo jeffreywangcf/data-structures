@@ -519,13 +519,13 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     /**
      * get the value of the maximum key in the dictionary if exists
      *
-     * @return the value of key or null
+     * @return the key-value pair or null
      */
-    public V getMax(){
+    public Pair<K, V> getMax(){
         if(this.isEmpty()){
             return null;
         }
-        return this.getMax(this.root).getValue();
+        return this.getMax(this.root).getPair();
     }
 
     /**
@@ -544,13 +544,13 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     /**
      * get the value of the minimum key in the dictionary if exists
      *
-     * @return the value of key or null
+     * @return the key-value pair or null
      */
-    public V getMin(){
+    public Pair<K, V> getMin(){
         if(this.isEmpty()){
             return null;
         }
-        return this.getMin(this.root).getValue();
+        return this.getMin(this.root).getPair();
     }
 
     /**

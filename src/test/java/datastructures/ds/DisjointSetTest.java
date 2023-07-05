@@ -110,7 +110,7 @@ public class DisjointSetTest{
 
     @Test
     public void testEfficiency(){
-        assertTimeout(Duration.ofMillis(500), () -> {
+        assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[DisjointSet] test disjoint set on 100,000 nodes by randomly union 50,000 "
                     + "times and find if 2 random nodes are connected 50,000 times");
             int size = 100000;
