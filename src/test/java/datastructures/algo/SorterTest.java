@@ -1,5 +1,9 @@
 package datastructures.algo;
 
+import datastructures.Driver;
+import datastructures.util.Generator;
+import datastructures.util.StopWatch;
+import java.time.Duration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -9,23 +13,23 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SorterTest{
+public class SorterTest{
 
-    Sorter<Integer> integerSorter;
+    private Sorter<Integer> integerSorter;
 
-    ArrayList<Integer> arrEmpty;
-    ArrayList<Integer> arrOneElement;
-    ArrayList<Integer> arrIncreasing;
-    ArrayList<Integer> arrNonIncreasing;
-    ArrayList<Integer> arrDecreasing;
-    ArrayList<Integer> arrNonDecreasing;
-    ArrayList<Integer> arrRepeating;
-    ArrayList<Integer> arrUnorderedNoDuplicate;
-    ArrayList<Integer> arrUnorderedWithDuplicate;
+    private ArrayList<Integer> arrEmpty;
+    private ArrayList<Integer> arrOneElement;
+    private ArrayList<Integer> arrIncreasing;
+    private ArrayList<Integer> arrNonIncreasing;
+    private ArrayList<Integer> arrDecreasing;
+    private ArrayList<Integer> arrNonDecreasing;
+    private ArrayList<Integer> arrRepeating;
+    private ArrayList<Integer> arrUnorderedNoDuplicate;
+    private ArrayList<Integer> arrUnorderedWithDuplicate;
 
 
     @BeforeEach
-    void setUp(){
+    public void setUp(){
         this.integerSorter = new Sorter<>();
 
         this.arrEmpty = new ArrayList<>();
@@ -148,5 +152,90 @@ class SorterTest{
         this.integerSorter.heapSort(this.arrUnorderedNoDuplicate);
         this.integerSorter.heapSort(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
+    }
+
+    @Test
+    public void testEfficiency(){
+        ArrayList<Integer> arr1 = Generator.randomIntegerArray(10000);
+        ArrayList<Integer> arr2 = new ArrayList<>(arr1);
+        ArrayList<Integer> arr3 = new ArrayList<>(arr1);
+        ArrayList<Integer> arr4 = Generator.randomIntegerArray(100000);
+        ArrayList<Integer> arr5 = new ArrayList<>(arr4);
+        ArrayList<Integer> arr6 = new ArrayList<>(arr4);
+        ArrayList<Integer> nearlyOrdered1 = Generator.nearlyOrderedArray(10000);
+        ArrayList<Integer> nearlyOrdered2 = new ArrayList<>(nearlyOrdered1);
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 10,000 "
+                + "with selection sort");
+            StopWatch.shared.begin();
+            this.integerSorter.selectionSort(arr1);
+            StopWatch.shared.end("Runtime:", 0.5);
+            assertTrue(this.integerSorter.isSorted(arr1));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 10,000 "
+                + "with insertion sort");
+            StopWatch.shared.begin();
+            this.integerSorter.insertionSort(arr2);
+            StopWatch.shared.end("Runtime:", 0.5);
+            assertTrue(this.integerSorter.isSorted(arr2));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting nearly ordered integer array of size "
+                + "10,000 with selection sort");
+
+            StopWatch.shared.begin();
+            this.integerSorter.selectionSort(nearlyOrdered1);
+            StopWatch.shared.end("Runtime:", 0.5);
+            assertTrue(this.integerSorter.isSorted(nearlyOrdered1));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting nearly ordered integer array of size "
+                + "10,000 with insertion sort");
+
+            StopWatch.shared.begin();
+            this.integerSorter.insertionSort(nearlyOrdered2);
+            StopWatch.shared.end("Runtime:", 0.5);
+            assertTrue(this.integerSorter.isSorted(nearlyOrdered2));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 10,000 "
+                + "with merge sort");
+            StopWatch.shared.begin();
+            this.integerSorter.mergeSort(arr3);
+            StopWatch.shared.end("Runtime:", 0.1);
+            assertTrue(this.integerSorter.isSorted(arr3));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 100,000 "
+                + "with merge sort");
+            StopWatch.shared.begin();
+            this.integerSorter.mergeSort(arr4);
+            StopWatch.shared.end("Runtime:", 0.25);
+            assertTrue(this.integerSorter.isSorted(arr4));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 100,000 "
+                + "with merge sort bottom-up");
+            StopWatch.shared.begin();
+            this.integerSorter.mergeSortBottomUp(arr5);
+            StopWatch.shared.end("Runtime:", 0.25);
+            assertTrue(this.integerSorter.isSorted(arr5));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 100,000 "
+                + "with quick sort");
+            StopWatch.shared.begin();
+            this.integerSorter.quickSort(arr6);
+            StopWatch.shared.end("Runtime:", 0.25);
+            assertTrue(this.integerSorter.isSorted(arr6));
+        });
     }
 }

@@ -25,7 +25,7 @@ public class StopWatch{
      * end stopwatch
      */
     public void end(){
-        this.end("", Double.MAX_VALUE);
+        this.end("time-lapse:", Double.MAX_VALUE);
     }
 
     /**
@@ -39,7 +39,7 @@ public class StopWatch{
         long curTime = System.currentTimeMillis();
         Double timeLapse = (curTime - this.t) / 1000.0;
         String timeLapseStr = String.format("%.3fs%n", timeLapse);
-        System.out.printf("%s time-lapse: %s%n", message, CLIColor.colored(timeLapseStr,
+        System.out.printf("%s %s%n", message, CLIColor.colored(timeLapseStr,
                 timeLapse < maxTime ? CLIColor.GREEN : CLIColor.RED));
     }
 }
