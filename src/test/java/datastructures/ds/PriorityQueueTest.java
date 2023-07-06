@@ -1,5 +1,8 @@
 package datastructures.ds;
 
+import datastructures.util.StopWatch;
+import java.time.Duration;
+import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PriorityQueueTest{
@@ -124,6 +128,25 @@ public class PriorityQueueTest{
         });
         assertThrows(IndexOutOfBoundsException.class, () -> {
             this.emptyPQ.peek();
+        });
+    }
+
+    @Test
+    public void testEfficiency(){
+        System.out.println("[Priority Queue] test priority queue by inserting random integer "
+            + "100,000 times and taking everything out");
+        PriorityQueue<Integer> pq = new PriorityQueue<>(true);
+        ArrayList<Integer> verify = new ArrayList<>();
+        Random rand = new Random(12345);
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            StopWatch.shared.begin();
+            for(int i = 0; i < 100000; i++){
+                pq.insert(rand.nextInt(100000));
+            }
+            while(!pq.isEmpty()){
+                verify.add(pq.pop());
+            }
+            StopWatch.shared.end("Runtime:", 0.25);
         });
     }
 }

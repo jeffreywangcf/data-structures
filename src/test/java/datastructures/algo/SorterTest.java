@@ -162,6 +162,7 @@ public class SorterTest{
         ArrayList<Integer> arr4 = Generator.randomIntegerArray(100000);
         ArrayList<Integer> arr5 = new ArrayList<>(arr4);
         ArrayList<Integer> arr6 = new ArrayList<>(arr4);
+        ArrayList<Integer> arr7 = new ArrayList<>(arr4);
         ArrayList<Integer> nearlyOrdered1 = Generator.nearlyOrderedArray(10000);
         ArrayList<Integer> nearlyOrdered2 = new ArrayList<>(nearlyOrdered1);
         assertTimeout(Duration.ofMillis(10000), () -> {
@@ -236,6 +237,15 @@ public class SorterTest{
             this.integerSorter.quickSort(arr6);
             StopWatch.shared.end("Runtime:", 0.25);
             assertTrue(this.integerSorter.isSorted(arr6));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Sorter] test sorting random integer array of size 100,000 "
+                + "with heap sort");
+            StopWatch.shared.begin();
+            this.integerSorter.heapSort(arr7);
+            StopWatch.shared.end("Runtime:", 0.25);
+            assertTrue(this.integerSorter.isSorted(arr7));
         });
     }
 }
