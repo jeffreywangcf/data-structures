@@ -12,6 +12,14 @@ jacoco {
     toolVersion = "0.8.7"
 }
 
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(false)
+        csv.required.set(true)
+        html.required.set(true)
+    }
+}
+
 tasks.named("test") {
     finalizedBy("jacocoTestReport")
 }
