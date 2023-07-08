@@ -231,7 +231,7 @@ public class DictionaryTest{
     public void testEfficiency(){
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Dictionary] test BST by doing a word count of bible (667,125 words)");
-            Driver.wordCounterBST();
+            Driver.wordCounterBST(new Dictionary<>());
         });
     }
 }
