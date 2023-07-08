@@ -1,12 +1,15 @@
 package datastructures.ds;
 
 import datastructures.Driver;
+import datastructures.algo.Sorter;
+import datastructures.util.Generator;
+import datastructures.util.StopWatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.invoke.VarHandle;
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +17,15 @@ public class DictionaryTest{
 
     private Dictionary<String, Integer> emptyDict;
     private Dictionary<String, Integer> dict1;
+
+    private <T extends Comparable<T>> boolean isBST(Dictionary<T, ?> d){
+        ArrayList<T> arr = new ArrayList<>();
+        for(Pair<T, ?> p : d){
+            arr.add(p.getFirst());
+        }
+        Sorter<T> sorter = new Sorter<>();
+        return sorter.isSorted(arr);
+    }
 
     @BeforeEach
     public void setUp(){
@@ -232,6 +244,22 @@ public class DictionaryTest{
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Dictionary] test BST by doing a word count of bible (667,125 words)");
             Driver.wordCounterBST(new Dictionary<>());
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Dictionary] test BST by adding nearly ordered keys 1,000,000 times");
+            Dictionary<Integer, Integer> dict = new Dictionary<>();
+            int size = 1000000;
+            ArrayList<Integer> keys = Generator.nearlyOrderedArray(size);
+            StopWatch.shared.begin();
+            for(Integer key : keys){
+                dict.insert(key, 0);
+            }
+            for(Integer key : keys){
+                dict.get(key);
+            }
+            StopWatch.shared.end("Runtime:", 2.0);
+            assertTrue(this.isBST(dict));
         });
     }
 }

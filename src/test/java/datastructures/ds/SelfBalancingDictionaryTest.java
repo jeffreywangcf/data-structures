@@ -2,14 +2,13 @@ package datastructures.ds;
 
 import datastructures.Driver;
 import datastructures.algo.Sorter;
+import datastructures.util.Generator;
+import datastructures.util.StopWatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -179,6 +178,23 @@ public class SelfBalancingDictionaryTest{
             Driver.wordCounterBST(tree);
             assertTrue(this.isBST(tree));
             assertTrue(this.isBalanced(tree));
+        });
+
+        assertTimeout(Duration.ofMillis(10000), () -> {
+            System.out.println("[Dictionary] test AVL Tree by adding nearly ordered keys 1,000,000 times");
+            SelfBalancingDictionary<Integer, Integer> dict = new SelfBalancingDictionary<>();
+            int size = 1000000;
+            ArrayList<Integer> keys = Generator.nearlyOrderedArray(size);
+            StopWatch.shared.begin();
+            for(Integer key : keys){
+                dict.insert(key, 0);
+            }
+            for(Integer key : keys){
+                dict.get(key);
+            }
+            StopWatch.shared.end("Runtime:", 2.0);
+            assertTrue(this.isBST(dict));
+            assertTrue(this.isBalanced(dict));
         });
     }
 }
