@@ -40,3 +40,11 @@ jobs:
         committer_name: GitHub Actions
         committer_email: actions@github.com
         add: '*.svg'
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Reports
+        path: build/reports/
+    - uses: actions/upload-artifact@v3
+      with:
+        name: JavaDocs
+        path: build/docs
