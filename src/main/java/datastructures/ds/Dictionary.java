@@ -21,9 +21,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of key
      * @param <V> type of value
      */
-    protected class TreeNode<K extends Comparable<K>, V>{
-        private final Pair<K, V> pair;
-        private TreeNode<K, V> leftChild, rightChild;
+    protected static class TreeNode<K extends Comparable<K>, V>{
+        protected final Pair<K, V> pair;
+        protected TreeNode<K, V> leftChild, rightChild;
 
         /**
          * convenient constructor to create a leaf node
@@ -107,7 +107,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
     }
 
     protected TreeNode<K, V> root;
-    private int count;
+    protected int count;
 
     /**
      * default constructor to create an empty dictionary
@@ -439,11 +439,6 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param value value of the pair
      */
     public void insert(K key, V value){
-        if(this.root == null){
-            this.count += 1;
-            this.root = new TreeNode<K, V>(key, value);
-            return;
-        }
         this.root = this.insert(this.root, key, value);
     }
 
@@ -455,7 +450,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param value value of the pair
      * @return updated node
      */
-    private TreeNode<K, V> insert(TreeNode<K, V> cur, K key, V value){
+    protected TreeNode<K, V> insert(TreeNode<K, V> cur, K key, V value){
         if(cur == null){
             this.count += 1;
             return new TreeNode<K, V>(key, value);
@@ -588,7 +583,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param key key to search
      * @return updated node
      */
-    private TreeNode<K, V> remove(TreeNode<K, V> cur, K key){
+    protected TreeNode<K, V> remove(TreeNode<K, V> cur, K key){
         if(key.compareTo(cur.getKey()) < 0){
             cur.setLeftChild(this.remove(cur.getLeftChild(), key));
             return cur;

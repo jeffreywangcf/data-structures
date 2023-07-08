@@ -3,6 +3,7 @@ package datastructures;
 import datastructures.ds.Dictionary;
 import datastructures.ds.Pair;
 import datastructures.ds.PriorityQueue;
+import datastructures.ds.SelfBalancingDictionary;
 import datastructures.util.StopWatch;
 
 import java.io.File;
@@ -23,15 +24,14 @@ public class Driver{
      * @param args arguments
      */
     public static void main(String[] args){
-        Driver.wordCounterBST();
+        Driver.wordCounterBST(new SelfBalancingDictionary<>());
     }
 
     /**
      * use Dictionary (BST) to do a word count on bible
      */
-    public static void wordCounterBST(){
+    public static void wordCounterBST(Dictionary<String, Integer> dict){
         String p = "src/main/resources/bible.txt";
-        Dictionary<String, Integer> dict = new Dictionary<>();
         ArrayList<String> words = new ArrayList<>();
         PriorityQueue<Pair<Integer, String>> pq = new PriorityQueue<>(true);
         try{
