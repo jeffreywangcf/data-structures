@@ -1,6 +1,7 @@
 # Finger Exercise: Data Structures & Algorithm
 
 ![Gradle CI](https://github.com/jeffreywangcf/data-structures/actions/workflows/gradle.yml/badge.svg)
+![Coverage](.github/badges/jacoco.svg)
 
 My implementation of common data structures and algorithms in Java. Tested correctness and efficiency with JUnit 5.
 
