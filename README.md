@@ -34,7 +34,7 @@ My implementation of common data structures and algorithms in Java. Tested corre
 ## Data Structures
 
 - dynamic array (coming soon)
-- [doubly linked list / deque](src/main/java/datastructures/ds/DoublyEndedQueue.java)
+- [deque / doubly linked list](src/main/java/datastructures/ds/DoublyEndedQueue.java)
 - [priority queue](src/main/java/datastructures/ds/PriorityQueue.java)
 - hash table (coming soon)
 
