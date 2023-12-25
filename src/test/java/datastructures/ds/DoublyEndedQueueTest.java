@@ -8,11 +8,17 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * represents a testing class for DEQ
+ */
 public class DoublyEndedQueueTest{
 
     private DoublyEndedQueue<Integer> mtDeq;
     private DoublyEndedQueue<Integer> deq1;
 
+    /**
+     * setup method before each test
+     */
     @BeforeEach
     public void setUp(){
         this.mtDeq = new DoublyEndedQueue<>();
@@ -21,9 +27,10 @@ public class DoublyEndedQueueTest{
 
     /**
      * verify the given DEQ has the correct value and correctly link its prev and next according to elements
-     * @param deq DEQ to test on
+     *
+     * @param deq      DEQ to test on
      * @param elements expected order of elements
-     * @param <T> type of DEQ and elements
+     * @param <T>      type of DEQ and elements
      */
     private <T> void verify(DoublyEndedQueue<T> deq, List<T> elements){
         assertEquals(deq.size(), elements.size());
@@ -55,6 +62,9 @@ public class DoublyEndedQueueTest{
         }
     }
 
+    /**
+     * testing constructor
+     */
     @Test
     public void testConstructor(){
         assertNull(this.mtDeq.head);
@@ -63,6 +73,9 @@ public class DoublyEndedQueueTest{
         this.verify(new DoublyEndedQueue<>(List.of(1)), List.of(1));
     }
 
+    /**
+     * testing forward and reverse iterator
+     */
     @Test
     public void testIterator(){
         Iterator<Integer> iter = this.mtDeq.iterator();
@@ -90,6 +103,9 @@ public class DoublyEndedQueueTest{
         assertFalse(iter.hasNext());
     }
 
+    /**
+     * testing insert
+     */
     @Test
     public void testInsert(){
         this.mtDeq.insertFirst(1);
@@ -107,6 +123,9 @@ public class DoublyEndedQueueTest{
         this.verify(this.deq1, List.of(1, 2, 3, 4, 5));
     }
 
+    /**
+     * testing peek
+     */
     @Test
     public void testPeek(){
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -118,8 +137,15 @@ public class DoublyEndedQueueTest{
         assertEquals(this.deq1.peekFirst(), 1);
         assertEquals(this.deq1.peekLast(), 3);
         assertEquals(this.deq1.size(), 3);
+        this.deq1.removeFirst();
+        this.deq1.removeLast();
+        assertEquals(this.deq1.peekFirst(), 2);
+        assertEquals(this.deq1.peekLast(), 2);
     }
 
+    /**
+     * testing size
+     */
     @Test
     public void testSize(){
         assertEquals(this.mtDeq.size(), 0);
@@ -127,12 +153,87 @@ public class DoublyEndedQueueTest{
         this.deq1.insertLast(3);
         this.deq1.insertFirst(4);
         assertEquals(this.deq1.size(), 5);
+        this.deq1.removeFirst();
+        this.deq1.removeLast();
+        assertEquals(this.deq1.size(), 3);
     }
 
+    /**
+     * testing is empty
+     */
     @Test
     public void testIsEmpty(){
         assertTrue(this.mtDeq.isEmpty());
         assertFalse(this.deq1.isEmpty());
+        assertTrue(this.deq1.remove(1));
+        assertTrue(this.deq1.remove(2));
+        assertTrue(this.deq1.remove(3));
+        assertTrue(this.deq1.isEmpty());
     }
 
+    /**
+     * testing contains
+     */
+    @Test
+    public void testContains(){
+        assertFalse(this.mtDeq.contains(1));
+        assertTrue(this.deq1.contains(1));
+        this.deq1.remove(1);
+        assertFalse(this.deq1.contains(1));
+        this.mtDeq.insertLast(4);
+        this.mtDeq.insertLast(5);
+        assertTrue(this.mtDeq.contains(5));
+        assertFalse(this.mtDeq.contains(6));
+    }
+
+    /**
+     * testing remove
+     */
+    @Test
+    public void testRemove(){
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.removeFirst();
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.removeLast();
+        });
+        assertEquals(this.deq1.removeFirst(), 1);
+        this.verify(this.deq1, List.of(2, 3));
+        assertEquals(this.deq1.removeFirst(), 2);
+        this.verify(this.deq1, List.of(3));
+        this.setUp();
+        assertEquals(this.deq1.removeFirst(), 1);
+        assertEquals(this.deq1.removeLast(), 3);
+        this.verify(this.deq1, List.of(2));
+        assertEquals(this.deq1.removeLast(), 2);
+        assertTrue(this.deq1.isEmpty());
+        this.setUp();
+        assertEquals(this.deq1.removeLast(), 3);
+        this.verify(this.deq1, List.of(1, 2));
+        assertEquals(this.deq1.removeLast(), 2);
+        this.verify(this.deq1, List.of(1));
+        this.setUp();
+        assertFalse(this.mtDeq.remove(1));
+        assertTrue(this.deq1.remove(2));
+        this.verify(this.deq1, List.of(1, 3));
+        DoublyEndedQueue<Integer> deq = new DoublyEndedQueue<>(List.of(1, 2, 3, 2));
+        assertTrue(deq.remove(2));
+        this.verify(deq, List.of(1, 3, 2));
+        assertTrue(deq.remove(1));
+        this.verify(deq, List.of(3, 2));
+    }
+
+    /**
+     * testing clear
+     */
+    @Test
+    public void testClear(){
+        this.mtDeq.clear();
+        assertTrue(this.mtDeq.isEmpty());
+        this.deq1.clear();
+        assertTrue(this.deq1.isEmpty());
+        this.deq1.insertLast(2);
+        this.deq1.clear();
+        assertTrue(this.deq1.isEmpty());
+    }
 }
