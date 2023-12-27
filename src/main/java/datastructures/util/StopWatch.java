@@ -12,6 +12,9 @@ public class StopWatch{
     private StopWatch(){
     }
 
+    /**
+     * shared singleton
+     */
     public static StopWatch shared = new StopWatch();
 
     /**

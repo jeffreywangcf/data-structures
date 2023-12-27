@@ -3,7 +3,9 @@ package datastructures.algo;
 import datastructures.Driver;
 import datastructures.util.Generator;
 import datastructures.util.StopWatch;
+
 import java.time.Duration;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -167,7 +169,7 @@ public class SorterTest{
         ArrayList<Integer> nearlyOrdered2 = new ArrayList<>(nearlyOrdered1);
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
-                + "with selection sort");
+                    + "with selection sort");
             StopWatch.shared.begin();
             this.integerSorter.selectionSort(arr1);
             StopWatch.shared.end("Runtime:", 0.5);
@@ -176,7 +178,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
-                + "with insertion sort");
+                    + "with insertion sort");
             StopWatch.shared.begin();
             this.integerSorter.insertionSort(arr2);
             StopWatch.shared.end("Runtime:", 0.5);
@@ -185,7 +187,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting nearly ordered integer array of size "
-                + "10,000 with selection sort");
+                    + "10,000 with selection sort");
 
             StopWatch.shared.begin();
             this.integerSorter.selectionSort(nearlyOrdered1);
@@ -195,7 +197,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting nearly ordered integer array of size "
-                + "10,000 with insertion sort");
+                    + "10,000 with insertion sort");
 
             StopWatch.shared.begin();
             this.integerSorter.insertionSort(nearlyOrdered2);
@@ -205,7 +207,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
-                + "with merge sort");
+                    + "with merge sort");
             StopWatch.shared.begin();
             this.integerSorter.mergeSort(arr3);
             StopWatch.shared.end("Runtime:", 0.1);
@@ -214,7 +216,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
-                + "with merge sort");
+                    + "with merge sort");
             StopWatch.shared.begin();
             this.integerSorter.mergeSort(arr4);
             StopWatch.shared.end("Runtime:", 0.25);
@@ -223,7 +225,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
-                + "with merge sort bottom-up");
+                    + "with merge sort bottom-up");
             StopWatch.shared.begin();
             this.integerSorter.mergeSortBottomUp(arr5);
             StopWatch.shared.end("Runtime:", 0.25);
@@ -232,7 +234,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
-                + "with quick sort");
+                    + "with quick sort");
             StopWatch.shared.begin();
             this.integerSorter.quickSort(arr6);
             StopWatch.shared.end("Runtime:", 0.25);
@@ -241,7 +243,7 @@ public class SorterTest{
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
-                + "with heap sort");
+                    + "with heap sort");
             StopWatch.shared.begin();
             this.integerSorter.heapSort(arr7);
             StopWatch.shared.end("Runtime:", 0.25);

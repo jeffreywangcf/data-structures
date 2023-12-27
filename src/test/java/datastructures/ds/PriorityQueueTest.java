@@ -1,8 +1,10 @@
 package datastructures.ds;
 
 import datastructures.util.StopWatch;
+
 import java.time.Duration;
 import java.util.Random;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -134,7 +136,7 @@ public class PriorityQueueTest{
     @Test
     public void testEfficiency(){
         System.out.println("[Priority Queue] test priority queue by inserting random integer "
-            + "100,000 times and taking everything out");
+                + "100,000 times and taking everything out");
         PriorityQueue<Integer> pq = new PriorityQueue<>(true);
         ArrayList<Integer> verify = new ArrayList<>();
         Random rand = new Random(12345);
