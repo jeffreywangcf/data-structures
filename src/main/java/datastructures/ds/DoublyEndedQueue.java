@@ -157,7 +157,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
     }
 
     /**
-     * represnets a Node iterator for DEQ
+     * represents a Node iterator for DEQ
      *
      * @param <T> type of data
      */
