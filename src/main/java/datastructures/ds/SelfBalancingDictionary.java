@@ -134,13 +134,13 @@ public class SelfBalancingDictionary<K extends Comparable<K>, V> extends Diction
      * @param node to perform left rotation
      * @return root node
      * <p>
-     *       y                        x
-     *      / \                     /  \
-     *     t1  x                   y    z
-     *        / \     ------->    / \  / \
-     *       t2  z              t1 t2 t3 t4
-     *          / \
-     *         t3 t4
+     * y                        x
+     * / \                     /  \
+     * t1  x                   y    z
+     * / \     ------->    / \  / \
+     * t2  z              t1 t2 t3 t4
+     * / \
+     * t3 t4
      */
     private Dictionary.TreeNode<K, V> rotateLeft(AVLNode<K, V> node){
         Dictionary.TreeNode<K, V> y = node;
@@ -170,13 +170,13 @@ public class SelfBalancingDictionary<K extends Comparable<K>, V> extends Diction
      * @param node node to perform right rotation
      * @return root node
      * <p>
-     *         y                   x
-     *        / \                /  \
-     *       x  t4              z    y
-     *      / \      ------>   / \   /\
-     *     z  t3              t1 t2 t3 t4
-     *    / \
-     *  t1  t2
+     * y                   x
+     * / \                /  \
+     * x  t4              z    y
+     * / \      ------>   / \   /\
+     * z  t3              t1 t2 t3 t4
+     * / \
+     * t1  t2
      */
     private Dictionary.TreeNode<K, V> rotateRight(AVLNode<K, V> node){
         Dictionary.TreeNode<K, V> y = node;

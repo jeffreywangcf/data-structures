@@ -22,7 +22,15 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <V> type of value
      */
     protected static class TreeNode<K extends Comparable<K>, V>{
+
+        /**
+         * pair of key and value
+         */
         protected final Pair<K, V> pair;
+
+        /**
+         * reference to left and right child
+         */
         protected TreeNode<K, V> leftChild, rightChild;
 
         /**
@@ -51,6 +59,8 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
         /**
          * getter for key
+         *
+         * @return key
          */
         public K getKey(){
             return this.pair.getFirst();
@@ -58,13 +68,16 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
         /**
          * getter for value
+         *
+         * @return value
          */
         public V getValue(){
             return this.pair.getSecond();
         }
 
         /**
-         * setter for value
+         * @param value new value
+         *              setter for value
          */
         public void setValue(V value){
             this.pair.setSecond(value);
@@ -72,13 +85,16 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
         /**
          * getter for left child
+         *
+         * @return left child
          */
         public TreeNode<K, V> getLeftChild(){
             return this.leftChild;
         }
 
         /**
-         * setter for left child
+         * @param leftChild new left child
+         *                  setter for left child
          */
         public void setLeftChild(TreeNode<K, V> leftChild){
             this.leftChild = leftChild;
@@ -86,13 +102,16 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
         /**
          * getter for right child
+         *
+         * @return right child
          */
         public TreeNode<K, V> getRightChild(){
             return this.rightChild;
         }
 
         /**
-         * setter for right child
+         * @param rightChild new right child
+         *                   setter for right child
          */
         public void setRightChild(TreeNode<K, V> rightChild){
             this.rightChild = rightChild;
@@ -100,13 +119,22 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
         /**
          * getter for key-value pair
+         *
+         * @return pair
          */
         public Pair<K, V> getPair(){
             return this.pair;
         }
     }
 
+    /**
+     * reference to root of the tree
+     */
     protected TreeNode<K, V> root;
+
+    /**
+     * number of nodes in tree
+     */
     protected int count;
 
     /**
@@ -619,13 +647,14 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
 
     /**
      * convert a dictionary to string
+     *
      * @return string representation
      */
     @Override
     public String toString(){
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("Tree [%d]: ", this.size()));
-        for(Pair<K, V> pair: this){
+        for(Pair<K, V> pair : this){
             builder.append(pair.toString()).append(", ");
         }
         String ret = builder.toString();

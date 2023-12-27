@@ -121,6 +121,40 @@ public class DoublyEndedQueueTest{
         this.verify(this.deq1, List.of(1, 2, 3, 4));
         this.deq1.insertLast(5);
         this.verify(this.deq1, List.of(1, 2, 3, 4, 5));
+        this.setUp();
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.deq1.insertFirst(0, -1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.deq1.insertLast(0, -1);
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.insertFirst(1, 1);
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.insertLast(1, 1);
+        });
+        this.setUp();
+        this.mtDeq.insertFirst(1, 0);
+        this.mtDeq.insertLast(2, 0);
+        this.verify(this.mtDeq, List.of(1, 2));
+        this.deq1.insertFirst(4, 1);
+        this.verify(deq1, List.of(1, 4, 2, 3));
+        this.deq1.insertLast(5, 1);
+        this.verify(deq1, List.of(1, 4, 2, 5, 3));
+        this.deq1.insertFirst(0, 2);
+        this.verify(deq1, List.of(1, 4, 0, 2, 5, 3));
+        this.deq1.insertFirst(6, 6);
+        this.verify(deq1, List.of(1, 4, 0, 2, 5, 3, 6));
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.deq1.insertFirst(5, 8);
+        });
+        this.setUp();
+        this.deq1.insertLast(0, 3);
+        this.verify(deq1, List.of(0, 1, 2, 3));
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.deq1.insertLast(5, 5);
+        });
     }
 
     /**
@@ -235,5 +269,70 @@ public class DoublyEndedQueueTest{
         this.deq1.insertLast(2);
         this.deq1.clear();
         assertTrue(this.deq1.isEmpty());
+    }
+
+    /**
+     * testing update
+     */
+    @Test
+    public void testUpdate(){
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.updateFirst(1);
+        });
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            this.mtDeq.updateLast(1);
+        });
+        this.mtDeq.insertFirst(1);
+        this.mtDeq.updateFirst(2);
+        this.verify(this.mtDeq, List.of(2));
+        this.mtDeq.updateLast(3);
+        this.verify(this.mtDeq, List.of(3));
+        this.deq1.updateFirst(0);
+        this.deq1.updateLast(0);
+        this.verify(this.deq1, List.of(0, 2, 0));
+        assertTrue(this.deq1.update(0, 1));
+        this.verify(this.deq1, List.of(1, 2, 0));
+        assertTrue(this.deq1.update(0, 3));
+        this.verify(this.deq1, List.of(1, 2, 3));
+        assertFalse(this.deq1.update(0, 4));
+        assertTrue(this.deq1.update(2, 0));
+        this.verify(this.deq1, List.of(1, 0, 3));
+        this.setUp();
+        assertFalse(this.mtDeq.update(0, 1));
+        this.mtDeq.insertFirst(0);
+        assertFalse(this.mtDeq.update(1, 0));
+        assertTrue(this.mtDeq.update(0, 1));
+        this.verify(this.mtDeq, List.of(1));
+    }
+
+    /**
+     * testing reverse
+     */
+    @Test
+    public void testReverse(){
+        this.mtDeq.reverse();
+        this.verify(this.mtDeq, List.of());
+        this.mtDeq.insertFirst(0);
+        this.mtDeq.reverse();
+        this.verify(this.mtDeq, List.of(0));
+        this.mtDeq.insertFirst(1);
+        this.mtDeq.reverse();
+        this.verify(this.mtDeq, List.of(0, 1));
+        this.deq1.reverse();
+        this.verify(this.deq1, List.of(3, 2, 1));
+        this.deq1.insertLast(0);
+        this.deq1.reverse();
+        this.verify(this.deq1, List.of(0, 1, 2, 3));
+    }
+
+    /**
+     * testing toString
+     */
+    @Test
+    public void testToString(){
+        assertEquals(this.mtDeq.toString(), "");
+        this.mtDeq.insertFirst(0);
+        assertEquals(this.mtDeq.toString(), "0");
+        assertEquals(this.deq1.toString(), "1, 2, 3");
     }
 }

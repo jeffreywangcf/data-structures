@@ -16,9 +16,16 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @param <T> type of data
      */
     protected static class Node<T>{
+
+        /**
+         * represents the value
+         */
         protected T value;
-        protected Node<T> prev;
-        protected Node<T> next;
+
+        /**
+         * reference to previous and next node
+         */
+        protected Node<T> prev, next;
 
         /**
          * convenient constructor to create a node that hugs itself
@@ -101,15 +108,22 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
         }
     }
 
+    /**
+     * reference to head of the DEQ
+     */
     protected Node<T> head;
-    private int size;
+
+    /**
+     * represent the number of nodes
+     */
+    private int count;
 
     /**
      * default constructor to create an empty DEQ
      */
     public DoublyEndedQueue(){
         this.head = null;
-        this.size = 0;
+        this.count = 0;
     }
 
     /**
@@ -130,7 +144,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @return size in int
      */
     public int size(){
-        return this.size;
+        return this.count;
     }
 
     /**
@@ -228,7 +242,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
         }else{
             this.head = new Node<>(element, this.head.getPrev(), this.head);
         }
-        this.size += 1;
+        this.count += 1;
     }
 
     /**
@@ -238,7 +252,23 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @param index   index from start
      */
     public void insertFirst(T element, int index){
-        // TODO
+        if(index < 0){
+            throw new IllegalArgumentException("index cannot be negative!");
+        }
+        if(index == 0){
+            this.insertFirst(element);
+            return;
+        }
+        if(index > this.size()){
+            throw new IndexOutOfBoundsException("given index is out of bound!");
+        }
+        Node<T> current = this.head;
+        while(index > 0){
+            current = current.getNext();
+            index -= 1;
+        }
+        new Node<T>(element, current.getPrev(), current);
+        this.count += 1;
     }
 
     /**
@@ -252,7 +282,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
         }else{
             new Node<>(element, this.head.getPrev(), this.head);
         }
-        this.size += 1;
+        this.count += 1;
     }
 
     /**
@@ -262,7 +292,27 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @param index   index from last
      */
     public void insertLast(T element, int index){
-        // TODO
+        if(index < 0){
+            throw new IllegalArgumentException("index cannot be negative!");
+        }
+        if(index == 0){
+            this.insertLast(element);
+            return;
+        }
+        if(index == this.size()){
+            this.insertFirst(element);
+            return;
+        }
+        if(index > this.size()){
+            throw new IndexOutOfBoundsException("given index is out of bound!");
+        }
+        Node<T> current = this.head;
+        while(index > 0){
+            current = current.getPrev();
+            index -= 1;
+        }
+        new Node<T>(element, current.getPrev(), current);
+        this.count += 1;
     }
 
     /**
@@ -295,7 +345,10 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @param newValue new value
      */
     public void updateFirst(T newValue){
-        // TODO
+        if(this.isEmpty()){
+            throw new IndexOutOfBoundsException("cannot update an empty DEQ!");
+        }
+        this.head.setValue(newValue);
     }
 
     /**
@@ -304,7 +357,10 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @param newValue new value
      */
     public void updateLast(T newValue){
-        // TODO
+        if(this.isEmpty()){
+            throw new IndexOutOfBoundsException("cannot update an empty DEQ!");
+        }
+        this.head.getPrev().setValue(newValue);
     }
 
     /**
@@ -315,8 +371,15 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * @return true if found and updated, false if not found
      */
     public boolean update(T element, T newValue){
-        // TODO
-        return false;
+        if(!this.contains(element)){
+            return false;
+        }
+        Node<T> current = this.head;
+        while(!current.getValue().equals(element)){
+            current = current.getNext();
+        }
+        current.setValue(newValue);
+        return true;
     }
 
     /**
@@ -339,7 +402,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
             this.head.setPrev(temp);
             temp.setNext(this.head);
         }
-        this.size -= 1;
+        this.count -= 1;
         return ret;
     }
 
@@ -362,7 +425,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
             temp.setNext(this.head);
             this.head.setPrev(temp);
         }
-        this.size -= 1;
+        this.count -= 1;
         return ret;
     }
 
@@ -400,7 +463,7 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
             }
             current.getPrev().setNext(current.getNext());
             current.getNext().setPrev(current.getPrev());
-            this.size -= 1;
+            this.count -= 1;
         }
         return true;
     }
@@ -418,7 +481,18 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      * reverse the order of DEQ, where next become prev
      */
     public void reverse(){
-        // TODO
+        if(this.count < 2){
+            return;
+        }
+        Node<T> current = this.head;
+        Node<T> next;
+        for(int i = 0; i < this.count; i++){
+            next = current.getNext();
+            current.setNext(current.getPrev());
+            current.setPrev(next);
+            current = next;
+        }
+        this.head = current.getNext();
     }
 
     /**
@@ -428,8 +502,12 @@ public class DoublyEndedQueue<T> implements Iterable<T>{
      */
     @Override
     public String toString(){
-        // TODO
-        return "";
+        StringBuilder builder = new StringBuilder();
+        for(T n : this){
+            builder.append(n).append(", ");
+        }
+        String ret = builder.toString();
+        return ret.isEmpty() ? ret : ret.substring(0, ret.length() - 2);
     }
 }
 

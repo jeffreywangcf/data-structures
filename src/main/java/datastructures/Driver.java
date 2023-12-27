@@ -28,7 +28,8 @@ public class Driver{
     }
 
     /**
-     * use Dictionary (BST) to do a word count on bible
+     * @param dict dictionary
+     *             use Dictionary (BST) to do a word count on bible
      */
     public static void wordCounterBST(Dictionary<String, Integer> dict){
         String p = "src/main/resources/bible.txt";
