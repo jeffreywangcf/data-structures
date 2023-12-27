@@ -134,21 +134,20 @@ public class SelfBalancingDictionary<K extends Comparable<K>, V> extends Diction
      * @param node to perform left rotation
      * @return root node
      * <p>
-     * y                        x
-     * / \                     /  \
-     * t1  x                   y    z
-     * / \     ------->    / \  / \
-     * t2  z              t1 t2 t3 t4
-     * / \
-     * t3 t4
+     *     y                        x
+     *    / \                     /  \
+     *   t1  x                   y    z
+     *      / \     ------->    / \  / \
+     *     t2  z              t1 t2 t3 t4
+     *    / \
+     *   t3 t4
      */
     private Dictionary.TreeNode<K, V> rotateLeft(AVLNode<K, V> node){
-        Dictionary.TreeNode<K, V> y = node;
-        Dictionary.TreeNode<K, V> x = y.getRightChild();
+        Dictionary.TreeNode<K, V> x = node.getRightChild();
         Dictionary.TreeNode<K, V> t2 = x.getLeftChild();
-        x.setLeftChild(y);
-        y.setRightChild(t2);
-        this.updateHeight((AVLNode<K, V>) y);
+        x.setLeftChild(node);
+        node.setRightChild(t2);
+        this.updateHeight(node);
         this.updateHeight((AVLNode<K, V>) x);
         return x;
     }
@@ -170,21 +169,20 @@ public class SelfBalancingDictionary<K extends Comparable<K>, V> extends Diction
      * @param node node to perform right rotation
      * @return root node
      * <p>
-     * y                   x
-     * / \                /  \
-     * x  t4              z    y
-     * / \      ------>   / \   /\
-     * z  t3              t1 t2 t3 t4
-     * / \
-     * t1  t2
+     *        y                   x
+     *       / \                /  \
+     *      x  t4              z    y
+     *     / \      ------>   / \   /\
+     *    z  t3              t1 t2 t3 t4
+     *      / \
+     *     t1  t2
      */
     private Dictionary.TreeNode<K, V> rotateRight(AVLNode<K, V> node){
-        Dictionary.TreeNode<K, V> y = node;
-        Dictionary.TreeNode<K, V> x = y.getLeftChild();
+        Dictionary.TreeNode<K, V> x = node.getLeftChild();
         Dictionary.TreeNode<K, V> t3 = x.getRightChild();
-        x.setRightChild(y);
-        y.setLeftChild(t3);
-        this.updateHeight((AVLNode<K, V>) y);
+        x.setRightChild(node);
+        node.setLeftChild(t3);
+        this.updateHeight(node);
         this.updateHeight((AVLNode<K, V>) x);
         return x;
     }

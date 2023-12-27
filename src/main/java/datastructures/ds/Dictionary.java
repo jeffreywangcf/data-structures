@@ -185,7 +185,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of the key
      * @param <V> type of the value
      */
-    private class InOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
+    private static class InOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
         private final boolean reverse;
@@ -276,7 +276,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of the key
      * @param <V> type of the value
      */
-    private class LevelOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
+    private static class LevelOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
 
@@ -338,7 +338,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of the key
      * @param <V> type of the value
      */
-    private class PreOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
+    private static class PreOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
 
@@ -400,7 +400,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      * @param <K> type of the key
      * @param <V> type of the value
      */
-    private class PostOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
+    private static class PostOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
         private final ArrayDeque<TreeNode<K, V>> workList;
 

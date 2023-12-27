@@ -19,7 +19,7 @@ public class PriorityQueue<T extends Comparable<T>>{
     /**
      * array that stores data in the heap starting at index = 1 for convenience
      */
-    private final ArrayList<T> data;
+    protected final ArrayList<T> data;
 
     /**
      * default constructor to create an empty priority queue
@@ -40,22 +40,10 @@ public class PriorityQueue<T extends Comparable<T>>{
      */
     public PriorityQueue(boolean isMaxHeap, ArrayList<T> arr){
         this(isMaxHeap);
-        for(T item : arr){
-            this.data.add(item);
-        }
-
+        this.data.addAll(arr);
         for(int i = (this.size() / 2); i > 0; i--){
             this.shiftDown(i);
         }
-    }
-
-    /**
-     * FOR TESTING ONLY: get data representation of the heap
-     *
-     * @return data array
-     */
-    public ArrayList<T> getData(){
-        return this.data;
     }
 
     /**
