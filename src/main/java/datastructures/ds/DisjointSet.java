@@ -1,4 +1,4 @@
-package datastructures.ds;
+package util;
 
 import java.util.ArrayList;
 
@@ -136,5 +136,20 @@ public class DisjointSet{
             this.parents.set(qRoot, pRoot);
             this.parents.set(pRoot, -(pSize + qSize)); // update the size of q root
         }
+    }
+
+    /**
+     * Get the number of connected components in the disjoint set.
+     *
+     * @return number of connected components
+     */
+    public int getNumberOfComponents(){
+        int count = 0;
+        for(int i = 0; i < this.size; i++){
+            if(this.parents.get(i) < 0){
+                count++;
+            }
+        }
+        return count;
     }
 }
