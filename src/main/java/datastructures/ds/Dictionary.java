@@ -1,8 +1,5 @@
 package datastructures.ds;
 
-// TODO: implement a deque
-
-import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.List;
 
@@ -187,7 +184,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      */
     private static class InOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
-        private final ArrayDeque<TreeNode<K, V>> workList;
+        private final DoublyEndedQueue<TreeNode<K, V>> workList;
         private final boolean reverse;
 
         /**
@@ -198,7 +195,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          */
         InOrderIterator(TreeNode<K, V> root, boolean reverse){
             this.reverse = reverse;
-            this.workList = new ArrayDeque<>();
+            this.workList = new DoublyEndedQueue<>();
             if(root != null){
                 this.addChildren(root);
             }
@@ -213,7 +210,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
             if(treeNode == null){
                 return;
             }
-            this.workList.addFirst(treeNode);
+            this.workList.insertFirst(treeNode);
             if(this.reverse){
                 this.addChildren(treeNode.getRightChild());
             }else{
@@ -278,7 +275,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      */
     private static class LevelOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
-        private final ArrayDeque<TreeNode<K, V>> workList;
+        private final DoublyEndedQueue<TreeNode<K, V>> workList;
 
         /**
          * constructor to create a breadth first iterator
@@ -286,9 +283,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          * @param root the root of the tree
          */
         LevelOrderIterator(TreeNode<K, V> root){
-            this.workList = new ArrayDeque<>();
+            this.workList = new DoublyEndedQueue<>();
             if(root != null){
-                this.workList.addFirst(root);
+                this.workList.insertFirst(root);
             }
         }
 
@@ -314,10 +311,10 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
             }
             TreeNode<K, V> ret = this.workList.removeFirst();
             if(ret.getLeftChild() != null){
-                this.workList.addLast(ret.getLeftChild());
+                this.workList.insertLast(ret.getLeftChild());
             }
             if(ret.getRightChild() != null){
-                this.workList.addLast(ret.getRightChild());
+                this.workList.insertLast(ret.getRightChild());
             }
             return ret.getPair();
         }
@@ -340,7 +337,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      */
     private static class PreOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
-        private final ArrayDeque<TreeNode<K, V>> workList;
+        private final DoublyEndedQueue<TreeNode<K, V>> workList;
 
         /**
          * constructor to create a pre order iterator
@@ -348,9 +345,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          * @param root the root of the tree
          */
         PreOrderIterator(TreeNode<K, V> root){
-            this.workList = new ArrayDeque<>();
+            this.workList = new DoublyEndedQueue<>();
             if(root != null){
-                this.workList.addFirst(root);
+                this.workList.insertFirst(root);
             }
         }
 
@@ -376,10 +373,10 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
             }
             TreeNode<K, V> ret = this.workList.removeFirst();
             if(ret.getRightChild() != null){
-                this.workList.addFirst(ret.getRightChild());
+                this.workList.insertFirst(ret.getRightChild());
             }
             if(ret.getLeftChild() != null){
-                this.workList.addFirst(ret.getLeftChild());
+                this.workList.insertFirst(ret.getLeftChild());
             }
             return ret.getPair();
         }
@@ -402,7 +399,7 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
      */
     private static class PostOrderIterator<K extends Comparable<K>, V> implements Iterator<Pair<K, V>>{
 
-        private final ArrayDeque<TreeNode<K, V>> workList;
+        private final DoublyEndedQueue<TreeNode<K, V>> workList;
 
         /**
          * constructor to create a post order iterator
@@ -410,19 +407,19 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
          * @param root the root of the tree
          */
         PostOrderIterator(TreeNode<K, V> root){
-            this.workList = new ArrayDeque<>();
-            ArrayDeque<TreeNode<K, V>> s = new ArrayDeque<>();
+            this.workList = new DoublyEndedQueue<>();
+            DoublyEndedQueue<TreeNode<K, V>> s = new DoublyEndedQueue<>();
             if(root != null){
-                s.addFirst(root);
+                s.insertFirst(root);
             }
             while(!s.isEmpty()){
                 TreeNode<K, V> top = s.removeFirst();
-                this.workList.addFirst(top);
+                this.workList.insertFirst(top);
                 if(top.getLeftChild() != null){
-                    s.addFirst(top.getLeftChild());
+                    s.insertFirst(top.getLeftChild());
                 }
                 if(top.getRightChild() != null){
-                    s.addFirst(top.getRightChild());
+                    s.insertFirst(top.getRightChild());
                 }
             }
         }

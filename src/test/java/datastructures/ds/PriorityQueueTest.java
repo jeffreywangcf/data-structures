@@ -1,6 +1,6 @@
 package datastructures.ds;
 
-import datastructures.algo.Sorter;
+import datastructures.algo.Sort;
 import datastructures.util.StopWatch;
 
 import java.time.Duration;
@@ -150,8 +150,8 @@ public class PriorityQueueTest{
                 verify.add(pq.pop());
             }
             StopWatch.shared.end("Runtime:", 0.25);
-            Sorter<Integer> sorter = new Sorter<>();
-            assertTrue(sorter.isSorted(verify));
+            Sort<Integer> sort = new Sort<>();
+            assertTrue(sort.isSorted(verify));
         });
     }
 }

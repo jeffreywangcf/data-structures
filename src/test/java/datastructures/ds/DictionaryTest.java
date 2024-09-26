@@ -1,13 +1,12 @@
 package datastructures.ds;
 
 import datastructures.Driver;
-import datastructures.algo.Sorter;
+import datastructures.algo.Sort;
 import datastructures.util.Generator;
 import datastructures.util.StopWatch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.invoke.VarHandle;
 import java.time.Duration;
 import java.util.*;
 
@@ -23,8 +22,8 @@ public class DictionaryTest{
         for(Pair<T, ?> p : d){
             arr.add(p.getFirst());
         }
-        Sorter<T> sorter = new Sorter<>();
-        return sorter.isSorted(arr);
+        Sort<T> sort = new Sort<>();
+        return sort.isSorted(arr);
     }
 
     @BeforeEach

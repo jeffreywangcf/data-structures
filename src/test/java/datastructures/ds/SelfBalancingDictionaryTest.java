@@ -1,7 +1,7 @@
 package datastructures.ds;
 
 import datastructures.Driver;
-import datastructures.algo.Sorter;
+import datastructures.algo.Sort;
 import datastructures.util.Generator;
 import datastructures.util.StopWatch;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ public class SelfBalancingDictionaryTest{
         for(Pair<T, ?> p : d){
             arr.add(p.getFirst());
         }
-        Sorter<T> sorter = new Sorter<>();
-        return sorter.isSorted(arr);
+        Sort<T> sort = new Sort<>();
+        return sort.isSorted(arr);
     }
 
     private boolean isBalanced(SelfBalancingDictionary<?, ?> d){

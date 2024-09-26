@@ -1,6 +1,5 @@
 package datastructures.algo;
 
-import datastructures.Driver;
 import datastructures.util.Generator;
 import datastructures.util.StopWatch;
 
@@ -15,9 +14,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SorterTest{
+public class SortTest{
 
-    private Sorter<Integer> integerSorter;
+    private Sort<Integer> integerSort;
 
     private ArrayList<Integer> arrEmpty;
     private ArrayList<Integer> arrOneElement;
@@ -32,7 +31,7 @@ public class SorterTest{
 
     @BeforeEach
     public void setUp(){
-        this.integerSorter = new Sorter<>();
+        this.integerSort = new Sort<>();
 
         this.arrEmpty = new ArrayList<>();
         this.arrOneElement = new ArrayList<>(Arrays.asList(1));
@@ -60,99 +59,99 @@ public class SorterTest{
     @Test
     @Order(1)
     public void testIsSorted(){
-        assertTrue(this.integerSorter.isSorted(this.arrEmpty));
-        assertTrue(this.integerSorter.isSorted(this.arrOneElement));
-        assertTrue(this.integerSorter.isSorted(this.arrIncreasing));
-        assertFalse(this.integerSorter.isSorted(this.arrNonIncreasing));
-        assertFalse(this.integerSorter.isSorted(this.arrDecreasing));
-        assertTrue(this.integerSorter.isSorted(this.arrNonDecreasing));
-        assertTrue(this.integerSorter.isSorted(this.arrRepeating));
-        assertFalse(this.integerSorter.isSorted(this.arrUnorderedNoDuplicate));
-        assertFalse(this.integerSorter.isSorted(this.arrUnorderedWithDuplicate));
+        assertTrue(this.integerSort.isSorted(this.arrEmpty));
+        assertTrue(this.integerSort.isSorted(this.arrOneElement));
+        assertTrue(this.integerSort.isSorted(this.arrIncreasing));
+        assertFalse(this.integerSort.isSorted(this.arrNonIncreasing));
+        assertFalse(this.integerSort.isSorted(this.arrDecreasing));
+        assertTrue(this.integerSort.isSorted(this.arrNonDecreasing));
+        assertTrue(this.integerSort.isSorted(this.arrRepeating));
+        assertFalse(this.integerSort.isSorted(this.arrUnorderedNoDuplicate));
+        assertFalse(this.integerSort.isSorted(this.arrUnorderedWithDuplicate));
     }
 
     @Test
     public void testSelectionSort(){
-        this.integerSorter.selectionSort(this.arrEmpty);
-        this.integerSorter.selectionSort(this.arrOneElement);
-        this.integerSorter.selectionSort(this.arrIncreasing);
-        this.integerSorter.selectionSort(this.arrNonIncreasing);
-        this.integerSorter.selectionSort(this.arrDecreasing);
-        this.integerSorter.selectionSort(this.arrNonDecreasing);
-        this.integerSorter.selectionSort(this.arrRepeating);
-        this.integerSorter.selectionSort(this.arrUnorderedNoDuplicate);
-        this.integerSorter.selectionSort(this.arrUnorderedWithDuplicate);
+        this.integerSort.selectionSort(this.arrEmpty);
+        this.integerSort.selectionSort(this.arrOneElement);
+        this.integerSort.selectionSort(this.arrIncreasing);
+        this.integerSort.selectionSort(this.arrNonIncreasing);
+        this.integerSort.selectionSort(this.arrDecreasing);
+        this.integerSort.selectionSort(this.arrNonDecreasing);
+        this.integerSort.selectionSort(this.arrRepeating);
+        this.integerSort.selectionSort(this.arrUnorderedNoDuplicate);
+        this.integerSort.selectionSort(this.arrUnorderedWithDuplicate);
 
         this.testAllExamplesAreSorted();
     }
 
     @Test
     public void testInsertionSort(){
-        this.integerSorter.insertionSort(this.arrEmpty);
-        this.integerSorter.insertionSort(this.arrOneElement);
-        this.integerSorter.insertionSort(this.arrIncreasing);
-        this.integerSorter.insertionSort(this.arrNonIncreasing);
-        this.integerSorter.insertionSort(this.arrDecreasing);
-        this.integerSorter.insertionSort(this.arrNonDecreasing);
-        this.integerSorter.insertionSort(this.arrRepeating);
-        this.integerSorter.insertionSort(this.arrUnorderedNoDuplicate);
-        this.integerSorter.insertionSort(this.arrUnorderedWithDuplicate);
+        this.integerSort.insertionSort(this.arrEmpty);
+        this.integerSort.insertionSort(this.arrOneElement);
+        this.integerSort.insertionSort(this.arrIncreasing);
+        this.integerSort.insertionSort(this.arrNonIncreasing);
+        this.integerSort.insertionSort(this.arrDecreasing);
+        this.integerSort.insertionSort(this.arrNonDecreasing);
+        this.integerSort.insertionSort(this.arrRepeating);
+        this.integerSort.insertionSort(this.arrUnorderedNoDuplicate);
+        this.integerSort.insertionSort(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
     }
 
     @Test
     public void testMergeSort(){
-        this.integerSorter.mergeSort(this.arrEmpty);
-        this.integerSorter.mergeSort(this.arrOneElement);
-        this.integerSorter.mergeSort(this.arrIncreasing);
-        this.integerSorter.mergeSort(this.arrNonIncreasing);
-        this.integerSorter.mergeSort(this.arrDecreasing);
-        this.integerSorter.mergeSort(this.arrNonDecreasing);
-        this.integerSorter.mergeSort(this.arrRepeating);
-        this.integerSorter.mergeSort(this.arrUnorderedNoDuplicate);
-        this.integerSorter.mergeSort(this.arrUnorderedWithDuplicate);
+        this.integerSort.mergeSort(this.arrEmpty);
+        this.integerSort.mergeSort(this.arrOneElement);
+        this.integerSort.mergeSort(this.arrIncreasing);
+        this.integerSort.mergeSort(this.arrNonIncreasing);
+        this.integerSort.mergeSort(this.arrDecreasing);
+        this.integerSort.mergeSort(this.arrNonDecreasing);
+        this.integerSort.mergeSort(this.arrRepeating);
+        this.integerSort.mergeSort(this.arrUnorderedNoDuplicate);
+        this.integerSort.mergeSort(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
     }
 
     @Test
     public void testMergeSortBottomUp(){
-        this.integerSorter.mergeSortBottomUp(this.arrEmpty);
-        this.integerSorter.mergeSortBottomUp(this.arrOneElement);
-        this.integerSorter.mergeSortBottomUp(this.arrIncreasing);
-        this.integerSorter.mergeSortBottomUp(this.arrNonIncreasing);
-        this.integerSorter.mergeSortBottomUp(this.arrDecreasing);
-        this.integerSorter.mergeSortBottomUp(this.arrNonDecreasing);
-        this.integerSorter.mergeSortBottomUp(this.arrRepeating);
-        this.integerSorter.mergeSortBottomUp(this.arrUnorderedNoDuplicate);
-        this.integerSorter.mergeSortBottomUp(this.arrUnorderedWithDuplicate);
+        this.integerSort.mergeSortBottomUp(this.arrEmpty);
+        this.integerSort.mergeSortBottomUp(this.arrOneElement);
+        this.integerSort.mergeSortBottomUp(this.arrIncreasing);
+        this.integerSort.mergeSortBottomUp(this.arrNonIncreasing);
+        this.integerSort.mergeSortBottomUp(this.arrDecreasing);
+        this.integerSort.mergeSortBottomUp(this.arrNonDecreasing);
+        this.integerSort.mergeSortBottomUp(this.arrRepeating);
+        this.integerSort.mergeSortBottomUp(this.arrUnorderedNoDuplicate);
+        this.integerSort.mergeSortBottomUp(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
     }
 
     @Test
     public void testQuickSort(){
-        this.integerSorter.quickSort(this.arrEmpty);
-        this.integerSorter.quickSort(this.arrOneElement);
-        this.integerSorter.quickSort(this.arrIncreasing);
-        this.integerSorter.quickSort(this.arrNonIncreasing);
-        this.integerSorter.quickSort(this.arrDecreasing);
-        this.integerSorter.quickSort(this.arrNonDecreasing);
-        this.integerSorter.quickSort(this.arrRepeating);
-        this.integerSorter.quickSort(this.arrUnorderedNoDuplicate);
-        this.integerSorter.quickSort(this.arrUnorderedWithDuplicate);
+        this.integerSort.quickSort(this.arrEmpty);
+        this.integerSort.quickSort(this.arrOneElement);
+        this.integerSort.quickSort(this.arrIncreasing);
+        this.integerSort.quickSort(this.arrNonIncreasing);
+        this.integerSort.quickSort(this.arrDecreasing);
+        this.integerSort.quickSort(this.arrNonDecreasing);
+        this.integerSort.quickSort(this.arrRepeating);
+        this.integerSort.quickSort(this.arrUnorderedNoDuplicate);
+        this.integerSort.quickSort(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
     }
 
     @Test
     public void testHeapSort(){
-        this.integerSorter.heapSort(this.arrEmpty);
-        this.integerSorter.heapSort(this.arrOneElement);
-        this.integerSorter.heapSort(this.arrIncreasing);
-        this.integerSorter.heapSort(this.arrNonIncreasing);
-        this.integerSorter.heapSort(this.arrDecreasing);
-        this.integerSorter.heapSort(this.arrNonDecreasing);
-        this.integerSorter.heapSort(this.arrRepeating);
-        this.integerSorter.heapSort(this.arrUnorderedNoDuplicate);
-        this.integerSorter.heapSort(this.arrUnorderedWithDuplicate);
+        this.integerSort.heapSort(this.arrEmpty);
+        this.integerSort.heapSort(this.arrOneElement);
+        this.integerSort.heapSort(this.arrIncreasing);
+        this.integerSort.heapSort(this.arrNonIncreasing);
+        this.integerSort.heapSort(this.arrDecreasing);
+        this.integerSort.heapSort(this.arrNonDecreasing);
+        this.integerSort.heapSort(this.arrRepeating);
+        this.integerSort.heapSort(this.arrUnorderedNoDuplicate);
+        this.integerSort.heapSort(this.arrUnorderedWithDuplicate);
         this.testAllExamplesAreSorted();
     }
 
@@ -171,18 +170,18 @@ public class SorterTest{
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
                     + "with selection sort");
             StopWatch.shared.begin();
-            this.integerSorter.selectionSort(arr1);
+            this.integerSort.selectionSort(arr1);
             StopWatch.shared.end("Runtime:", 0.5);
-            assertTrue(this.integerSorter.isSorted(arr1));
+            assertTrue(this.integerSort.isSorted(arr1));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
                     + "with insertion sort");
             StopWatch.shared.begin();
-            this.integerSorter.insertionSort(arr2);
+            this.integerSort.insertionSort(arr2);
             StopWatch.shared.end("Runtime:", 0.5);
-            assertTrue(this.integerSorter.isSorted(arr2));
+            assertTrue(this.integerSort.isSorted(arr2));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
@@ -190,9 +189,9 @@ public class SorterTest{
                     + "10,000 with selection sort");
 
             StopWatch.shared.begin();
-            this.integerSorter.selectionSort(nearlyOrdered1);
+            this.integerSort.selectionSort(nearlyOrdered1);
             StopWatch.shared.end("Runtime:", 0.5);
-            assertTrue(this.integerSorter.isSorted(nearlyOrdered1));
+            assertTrue(this.integerSort.isSorted(nearlyOrdered1));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
@@ -200,54 +199,54 @@ public class SorterTest{
                     + "10,000 with insertion sort");
 
             StopWatch.shared.begin();
-            this.integerSorter.insertionSort(nearlyOrdered2);
+            this.integerSort.insertionSort(nearlyOrdered2);
             StopWatch.shared.end("Runtime:", 0.5);
-            assertTrue(this.integerSorter.isSorted(nearlyOrdered2));
+            assertTrue(this.integerSort.isSorted(nearlyOrdered2));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 10,000 "
                     + "with merge sort");
             StopWatch.shared.begin();
-            this.integerSorter.mergeSort(arr3);
+            this.integerSort.mergeSort(arr3);
             StopWatch.shared.end("Runtime:", 0.1);
-            assertTrue(this.integerSorter.isSorted(arr3));
+            assertTrue(this.integerSort.isSorted(arr3));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
                     + "with merge sort");
             StopWatch.shared.begin();
-            this.integerSorter.mergeSort(arr4);
+            this.integerSort.mergeSort(arr4);
             StopWatch.shared.end("Runtime:", 0.25);
-            assertTrue(this.integerSorter.isSorted(arr4));
+            assertTrue(this.integerSort.isSorted(arr4));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
                     + "with merge sort bottom-up");
             StopWatch.shared.begin();
-            this.integerSorter.mergeSortBottomUp(arr5);
+            this.integerSort.mergeSortBottomUp(arr5);
             StopWatch.shared.end("Runtime:", 0.25);
-            assertTrue(this.integerSorter.isSorted(arr5));
+            assertTrue(this.integerSort.isSorted(arr5));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
                     + "with quick sort");
             StopWatch.shared.begin();
-            this.integerSorter.quickSort(arr6);
+            this.integerSort.quickSort(arr6);
             StopWatch.shared.end("Runtime:", 0.25);
-            assertTrue(this.integerSorter.isSorted(arr6));
+            assertTrue(this.integerSort.isSorted(arr6));
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Sorter] test sorting random integer array of size 100,000 "
                     + "with heap sort");
             StopWatch.shared.begin();
-            this.integerSorter.heapSort(arr7);
+            this.integerSort.heapSort(arr7);
             StopWatch.shared.end("Runtime:", 0.25);
-            assertTrue(this.integerSorter.isSorted(arr7));
+            assertTrue(this.integerSort.isSorted(arr7));
         });
     }
 }

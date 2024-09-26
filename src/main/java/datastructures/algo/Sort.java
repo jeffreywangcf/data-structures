@@ -9,12 +9,12 @@ import java.util.ArrayList;
  *
  * @param <T> the type of data
  */
-public class Sorter<T extends Comparable<T>>{
+public class Sort<T extends Comparable<T>>{
 
     /**
      * constructor for Sorter
      */
-    public Sorter(){
+    public Sort(){
     }
 
     /**
