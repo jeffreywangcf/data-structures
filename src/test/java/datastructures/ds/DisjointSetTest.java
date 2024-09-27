@@ -126,4 +126,10 @@ public class DisjointSetTest{
             StopWatch.shared.end("Runtime:", 0.1);
         });
     }
+
+    @Test
+    public void testConnectedComponents(){
+        assertEquals(this.emptyDs.getNumberOfComponents(), 0);
+        assertEquals(this.ds1.getNumberOfComponents(), 4);
+    }
 }
