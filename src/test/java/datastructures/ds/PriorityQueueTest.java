@@ -150,8 +150,7 @@ public class PriorityQueueTest{
                 verify.add(pq.pop());
             }
             StopWatch.shared.end("Runtime:", 0.25);
-            Sort<Integer> sort = new Sort<>();
-            assertTrue(sort.isSorted(verify));
+            assertTrue(Sort.isSorted(verify));
         });
     }
 }

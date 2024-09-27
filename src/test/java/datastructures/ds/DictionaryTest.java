@@ -22,8 +22,7 @@ public class DictionaryTest{
         for(Pair<T, ?> p : d){
             arr.add(p.getFirst());
         }
-        Sort<T> sort = new Sort<>();
-        return sort.isSorted(arr);
+        return Sort.isSorted(arr);
     }
 
     @BeforeEach
