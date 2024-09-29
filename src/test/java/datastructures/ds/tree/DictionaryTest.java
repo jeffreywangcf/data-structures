@@ -1,4 +1,4 @@
-package datastructures.ds;
+package datastructures.ds.tree;
 
 import datastructures.Driver;
 import datastructures.algo.Sort;
@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DictionaryTest{
 
-    private Dictionary<String, Integer> emptyDict;
-    private Dictionary<String, Integer> dict1;
+    private datastructures.ds.tree.Dictionary<String, Integer> emptyDict;
+    private datastructures.ds.tree.Dictionary<String, Integer> dict1;
 
-    private <T extends Comparable<T>> boolean isBST(Dictionary<T, ?> d){
+    private <T extends Comparable<T>> boolean isBST(datastructures.ds.tree.Dictionary<T, ?> d){
         ArrayList<T> arr = new ArrayList<>();
         for(Pair<T, ?> p : d){
             arr.add(p.getFirst());
@@ -27,15 +27,15 @@ public class DictionaryTest{
 
     @BeforeEach
     public void setUp(){
-        this.emptyDict = new Dictionary<>();
-        this.dict1 = new Dictionary<>(List.of("donut", "banana", "garlic", "apple", "carrot", "egg", "kiwi"),
+        this.emptyDict = new datastructures.ds.tree.Dictionary<>();
+        this.dict1 = new datastructures.ds.tree.Dictionary<>(List.of("donut", "banana", "garlic", "apple", "carrot", "egg", "kiwi"),
                 List.of(4, 1, 5, 2, 6, 0, 3));
     }
 
     @Test
     public void testConstructor(){
         assertThrows(IllegalArgumentException.class, () -> {
-            Dictionary<String, Integer> d = new Dictionary<>(List.of("a", "b"), List.of(1));
+            datastructures.ds.tree.Dictionary<String, Integer> d = new datastructures.ds.tree.Dictionary<>(List.of("a", "b"), List.of(1));
         });
     }
 
@@ -241,12 +241,12 @@ public class DictionaryTest{
     public void testEfficiency(){
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Dictionary] test BST by doing a word count of bible (667,125 words)");
-            Driver.wordCounterBST(new Dictionary<>());
+            Driver.wordCounterBST(new datastructures.ds.tree.Dictionary<>());
         });
 
         assertTimeout(Duration.ofMillis(10000), () -> {
             System.out.println("[Dictionary] test BST by adding nearly ordered keys 1,000,000 times");
-            Dictionary<Integer, Integer> dict = new Dictionary<>();
+            datastructures.ds.tree.Dictionary<Integer, Integer> dict = new Dictionary<>();
             int size = 1000000;
             ArrayList<Integer> keys = Generator.nearlyOrderedArray(size);
             StopWatch.shared.begin();

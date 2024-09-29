@@ -1,8 +1,8 @@
 package datastructures.algo;
 
-import datastructures.graph.DenseGraph;
-import datastructures.graph.Graph;
-import datastructures.graph.SparseGraph;
+import datastructures.ds.graph.DenseGraph;
+import datastructures.ds.graph.Graph;
+import datastructures.ds.graph.SparseGraph;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

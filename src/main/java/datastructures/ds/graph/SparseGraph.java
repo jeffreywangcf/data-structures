@@ -1,4 +1,4 @@
-package datastructures.graph;
+package datastructures.ds.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,16 +10,7 @@ import java.util.Map;
  *
  * @param <T> type of vertex
  */
-public class SparseGraph<T> implements Graph<T>{
-    /**
-     * Number of edges.
-     */
-    private int e;
-
-    /**
-     * If the graph is a directed graph.
-     */
-    private final boolean directed;
+public class SparseGraph<T> extends Graph<T>{
 
     /**
      * Data structure that stores edge information.
@@ -27,20 +18,13 @@ public class SparseGraph<T> implements Graph<T>{
     private final Map<T, List<T>> adjacencyList;
 
     /**
-     * Maintains vertices in the order they were added.
-     */
-    private final List<T> vertices;
-
-    /**
      * Default constructor.
      *
      * @param directed if the graph is directed
      */
     public SparseGraph(boolean directed){
-        this.directed = directed;
-        this.e = 0;
+        super(directed);
         this.adjacencyList = new HashMap<>();
-        this.vertices = new ArrayList<>();
     }
 
     /**
@@ -50,10 +34,8 @@ public class SparseGraph<T> implements Graph<T>{
      * @param directed if the graph is directed
      */
     public SparseGraph(List<T> vertices, boolean directed){
-        this.directed = directed;
-        this.e = 0;
+        super(vertices, directed);
         this.adjacencyList = new HashMap<>();
-        this.vertices = new ArrayList<>(vertices);
         for(T vertex : vertices){
             adjacencyList.put(vertex, new ArrayList<>());
         }
@@ -64,29 +46,8 @@ public class SparseGraph<T> implements Graph<T>{
      */
     @Override
     public void clear(){
+        super.clear();
         this.adjacencyList.clear();
-        this.vertices.clear();
-        this.e = 0;
-    }
-
-    /**
-     * Gets the number of edges in the graph.
-     *
-     * @return integer of the total number of edges
-     */
-    @Override
-    public int E(){
-        return this.e;
-    }
-
-    /**
-     * Gets the number of vertices in the graph.
-     *
-     * @return integer of the total number of vertices
-     */
-    @Override
-    public int V(){
-        return this.vertices.size();
     }
 
     /**
@@ -152,14 +113,5 @@ public class SparseGraph<T> implements Graph<T>{
      */
     public List<T> getNeighbor(T from){
         return this.adjacencyList.getOrDefault(from, new ArrayList<>());
-    }
-
-    /**
-     * Gets a list of vertices in the graph in the order they were added.
-     *
-     * @return list of vertices
-     */
-    public List<T> getVertices(){
-        return new ArrayList<>(this.vertices);
     }
 }

@@ -1,4 +1,4 @@
-package datastructures.ds;
+package datastructures.ds.tree;
 
 import datastructures.Driver;
 import datastructures.algo.Sort;

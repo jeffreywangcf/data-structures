@@ -70,6 +70,7 @@ public class Sort{
      * perform merge sort on given array recursively
      *
      * @param arr given array to sort
+     * @param <T> the type of data
      */
     public static <T extends Comparable<T>> void mergeSort(ArrayList<T> arr){
         mergeSort(arr, new ArrayList<>(arr), 0, arr.size());
@@ -146,6 +147,7 @@ public class Sort{
      * perform quick sort on given array
      *
      * @param arr arr to perform quick sort on
+     * @param <T> the type of data
      */
     public static <T extends Comparable<T>> void quickSort(ArrayList<T> arr){
         quickSort(arr, 0, arr.size());

@@ -1,9 +1,9 @@
 package datastructures;
 
-import datastructures.ds.Dictionary;
-import datastructures.ds.Pair;
+import datastructures.ds.tree.Dictionary;
+import datastructures.ds.tree.Pair;
 import datastructures.ds.PriorityQueue;
-import datastructures.ds.SelfBalancingDictionary;
+import datastructures.ds.tree.SelfBalancingDictionary;
 import datastructures.util.StopWatch;
 
 import java.io.File;

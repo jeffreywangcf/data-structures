@@ -1,4 +1,4 @@
-package datastructures.ds;
+package datastructures.ds.tree;
 
 import java.util.List;
 

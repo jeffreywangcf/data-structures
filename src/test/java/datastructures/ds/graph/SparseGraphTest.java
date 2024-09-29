@@ -1,5 +1,4 @@
-package datastructures.graph;
-
+package datastructures.ds.graph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,20 +6,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DenseGraphTest{
+public class SparseGraphTest{
 
     private Graph<String> g1;
     private Graph<String> g2;
 
     @BeforeEach
     public void setUp(){
-        g1 = new DenseGraph<>(true);
-        g2 = new DenseGraph<>(false);
+        this.g1 = new SparseGraph<>(true);
+        this.g2 = new SparseGraph<>(false);
     }
 
     @Test
     public void testConstructorWithVertices(){
-        Graph<String> g = new DenseGraph<>(List.of("A", "B", "C"), false);
+        Graph<String> g = new SparseGraph<>(List.of("A", "B", "C"), false);
         assertEquals(3, g.V());
         assertEquals(0, g.E());
         assertTrue(g.getNeighbor("A").isEmpty());
@@ -126,14 +125,6 @@ public class DenseGraphTest{
         assertEquals(0, g1.V());
         assertEquals(0, g1.E());
         assertFalse(g1.hasEdge("A", "B"));
-    }
-
-    @Test
-    public void testAddSameEdgeMultipleTimes(){
-        g2.addEdge("A", "B");
-        g2.addEdge("A", "B");
-        assertEquals(2, g2.V());
-        assertEquals(1, g2.E());
     }
 
     @Test

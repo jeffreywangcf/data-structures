@@ -1,4 +1,4 @@
-package datastructures.graph;
+package datastructures.ds.graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,7 @@ import java.util.List;
  *
  * @param <T> type of vertex
  */
-public class DenseGraph<T> implements Graph<T>{
-
-    /**
-     * Number of edges
-     */
-    private int e;
-
-    /**
-     * If the graph is a directed graph
-     */
-    private final boolean directed;
-
-    /**
-     * List of vertices
-     */
-    private final List<T> vertices;
+public class DenseGraph<T> extends Graph<T>{
 
     /**
      * Adjacency matrix to store edge information
@@ -36,9 +21,7 @@ public class DenseGraph<T> implements Graph<T>{
      * @param directed If the graph is directed
      */
     public DenseGraph(boolean directed){
-        this.directed = directed;
-        this.e = 0;
-        this.vertices = new ArrayList<>();
+        super(directed);
         this.adjacencyMatrix = new boolean[0][0];
     }
 
@@ -49,9 +32,7 @@ public class DenseGraph<T> implements Graph<T>{
      * @param directed If the graph is directed
      */
     public DenseGraph(List<T> vertices, boolean directed){
-        this.directed = directed;
-        this.e = 0;
-        this.vertices = new ArrayList<>(vertices);
+        super(vertices, directed);
         this.adjacencyMatrix = new boolean[this.vertices.size()][this.vertices.size()];
     }
 
@@ -60,29 +41,8 @@ public class DenseGraph<T> implements Graph<T>{
      */
     @Override
     public void clear(){
+        super.clear();
         this.adjacencyMatrix = new boolean[0][0];
-        this.vertices.clear();
-        this.e = 0;
-    }
-
-    /**
-     * Get number of edges in the graph.
-     *
-     * @return Number of edges
-     */
-    @Override
-    public int E(){
-        return this.e;
-    }
-
-    /**
-     * Get number of vertices in the graph.
-     *
-     * @return Number of vertices
-     */
-    @Override
-    public int V(){
-        return this.vertices.size();
     }
 
     /**
@@ -184,14 +144,5 @@ public class DenseGraph<T> implements Graph<T>{
             System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, adjacencyMatrix[i].length);
         }
         adjacencyMatrix = newMatrix;
-    }
-
-    /**
-     * get a list of vertices in graph
-     *
-     * @return list of vertices
-     */
-    public List<T> getVertices(){
-        return this.vertices;
     }
 }

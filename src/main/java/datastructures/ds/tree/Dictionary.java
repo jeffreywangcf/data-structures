@@ -1,4 +1,6 @@
-package datastructures.ds;
+package datastructures.ds.tree;
+
+import datastructures.ds.DoublyEndedQueue;
 
 import java.util.Iterator;
 import java.util.List;

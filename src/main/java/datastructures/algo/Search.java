@@ -1,7 +1,7 @@
 package datastructures.algo;
 
 import datastructures.ds.DoublyEndedQueue;
-import datastructures.graph.Graph;
+import datastructures.ds.graph.Graph;
 
 import java.util.HashSet;
 import java.util.List;

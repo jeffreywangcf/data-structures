@@ -1,5 +1,7 @@
-package datastructures.ds;
+package datastructures.ds.tree;
 
+
+import java.util.Objects;
 
 /**
  * represents a pair of data
@@ -80,6 +82,16 @@ public class Pair<K extends Comparable<K>, V> implements Comparable<Pair<K, V>>{
             return this.first.equals(that.first) && this.second.equals(that.second);
         }
         return false;
+    }
+
+    /**
+     * get the hash code of the pair
+     *
+     * @return hash code in int
+     */
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.first, this.second);
     }
 
     /**
