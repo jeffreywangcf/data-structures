@@ -7,7 +7,7 @@ My implementation of common data structures and algorithms in Java. Tested corre
 
 ## Algorithms
 
-### [Sorter](src/main/java/datastructures/algo/Sorter.java)
+### [Sorter](src/main/java/datastructures/algo/Sort.java)
 
 - selection sort
 - insertion sort
@@ -16,7 +16,7 @@ My implementation of common data structures and algorithms in Java. Tested corre
 - quick sort (2-way partition)
 - heap sort
 
-### Graph Traversal (coming soon)
+### [Graph Traversal](src/main/java/datastructures/algo/Search.java)
 
 - BFS
 - DFS
@@ -40,14 +40,15 @@ My implementation of common data structures and algorithms in Java. Tested corre
 
 ### Trees
 
-- [BST](src/main/java/datastructures/ds/Dictionary.java)
-- [AVL Tree](src/main/java/datastructures/ds/SelfBalancingDictionary.java)
+- [BST](src/main/java/datastructures/ds/tree/Dictionary.java)
+- [AVL Tree](src/main/java/datastructures/ds/tree/SelfBalancingDictionary.java)
 - B-tree (coming soon)
 - trie (coming soon)
 - huffman tree (coming soon)
 
 ### Graphs
 
-- unweighted graph w/ adjacent list (coming soon)
-- weighted graph w/ adjacent list (coming soon)
+- [unweighted graph w/ adjacent list](src/main/java/datastructures/ds/graph/SparseGraph.java)
+- [unweighted graph w/ adjacent matrix](src/main/java/datastructures/ds/graph/DenseGraph.java)
+- [weighted graph w/ adjacent list](src/main/java/datastructures/ds/graph/WeightedGraph.java)
 - [disjoint set / union find](src/main/java/datastructures/ds/DisjointSet.java)
