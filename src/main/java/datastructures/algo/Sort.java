@@ -3,6 +3,7 @@ package datastructures.algo;
 import datastructures.util.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * represents a sorter for a specific type of data
@@ -22,7 +23,7 @@ public class Sort{
      * @param <T> the type of data
      * @return boolean value
      */
-    public static <T extends Comparable<T>> boolean isSorted(ArrayList<T> arr){
+    public static <T extends Comparable<T>> boolean isSorted(List<T> arr){
         for(int i = 0; i < arr.size() - 1; i++){
             if(arr.get(i).compareTo(arr.get(i + 1)) > 0){
                 return false;
@@ -37,7 +38,7 @@ public class Sort{
      * @param arr given array to sort
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void selectionSort(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void selectionSort(List<T> arr){
         for(int i = 0; i < arr.size() - 1; i++){
             int smallest = i;
             for(int j = i + 1; j < arr.size(); j++){
@@ -55,7 +56,7 @@ public class Sort{
      * @param arr given array to sort
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void insertionSort(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void insertionSort(List<T> arr){
         for(int i = 1; i < arr.size(); i++){
             T curElement = arr.get(i);
             int j = i;
@@ -72,7 +73,7 @@ public class Sort{
      * @param arr given array to sort
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void mergeSort(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void mergeSort(List<T> arr){
         mergeSort(arr, new ArrayList<>(arr), 0, arr.size());
     }
 
@@ -85,7 +86,7 @@ public class Sort{
      * @param r   right bound (non-inclusive)
      * @param <T> the type of data
      */
-    private static <T extends Comparable<T>> void mergeSort(ArrayList<T> arr, ArrayList<T> aux, int l, int r){
+    private static <T extends Comparable<T>> void mergeSort(List<T> arr, List<T> aux, int l, int r){
         if(l + 1 >= r){
             return;
         }
@@ -106,7 +107,7 @@ public class Sort{
      * @param r   right bound (non-inclusive)
      * @param <T> the type of data
      */
-    private static <T extends Comparable<T>> void merge(ArrayList<T> arr, ArrayList<T> aux, int l, int m, int r){
+    private static <T extends Comparable<T>> void merge(List<T> arr, List<T> aux, int l, int m, int r){
         int i = l;
         int j = m;
         for(int k = l; k < r; k++){
@@ -132,7 +133,7 @@ public class Sort{
      * @param arr arr to perform merge sort on
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void mergeSortBottomUp(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void mergeSortBottomUp(List<T> arr){
         ArrayList<T> aux = new ArrayList<>(arr);
         int n = arr.size();
 
@@ -149,7 +150,7 @@ public class Sort{
      * @param arr arr to perform quick sort on
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void quickSort(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void quickSort(List<T> arr){
         quickSort(arr, 0, arr.size());
     }
 
@@ -161,7 +162,7 @@ public class Sort{
      * @param r   right bound (non-inclusive)
      * @param <T> the type of data
      */
-    private static <T extends Comparable<T>> void quickSort(ArrayList<T> arr, int l, int r){
+    private static <T extends Comparable<T>> void quickSort(List<T> arr, int l, int r){
         if(l + 1 >= r){
             return;
         }
@@ -180,7 +181,7 @@ public class Sort{
      * @param <T> the type of data
      * @return the index of the pivot after partition
      */
-    private static <T extends Comparable<T>> int partition(ArrayList<T> arr, int l, int r){
+    private static <T extends Comparable<T>> int partition(List<T> arr, int l, int r){
         Utils.swap(arr, l, (int) (Math.random() * (r - l)) + l);
         T cur = arr.get(l);
 
@@ -212,7 +213,7 @@ public class Sort{
      * @param arr arr to perform heap sort on
      * @param <T> the type of data
      */
-    public static <T extends Comparable<T>> void heapSort(ArrayList<T> arr){
+    public static <T extends Comparable<T>> void heapSort(List<T> arr){
         for(int i = (arr.size() / 2) - 1; i >= 0; i--){
             shiftDown(arr, i, arr.size());
         }
@@ -230,7 +231,7 @@ public class Sort{
      * @param sz  the size of the heap array
      * @param <T> the type of data
      */
-    private static <T extends Comparable<T>> void shiftDown(ArrayList<T> arr, int i, int sz){
+    private static <T extends Comparable<T>> void shiftDown(List<T> arr, int i, int sz){
         while((i * 2 + 1) < sz){  //while i has a left child
             int maxIndex = i;
             if(arr.get(i * 2 + 1).compareTo(arr.get(maxIndex)) > 0){
