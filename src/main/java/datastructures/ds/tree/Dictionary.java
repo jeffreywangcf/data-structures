@@ -75,8 +75,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         }
 
         /**
+         * setter for value
+         *
          * @param value new value
-         *              setter for value
          */
         public void setValue(V value){
             this.pair.setSecond(value);
@@ -92,8 +93,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         }
 
         /**
+         * setter for left child
+         *
          * @param leftChild new left child
-         *                  setter for left child
          */
         public void setLeftChild(TreeNode<K, V> leftChild){
             this.leftChild = leftChild;
@@ -109,8 +111,9 @@ public class Dictionary<K extends Comparable<K>, V> implements Iterable<Pair<K, 
         }
 
         /**
+         * setter for right child
+         *
          * @param rightChild new right child
-         *                   setter for right child
          */
         public void setRightChild(TreeNode<K, V> rightChild){
             this.rightChild = rightChild;

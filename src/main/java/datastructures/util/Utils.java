@@ -5,7 +5,13 @@ import java.util.List;
 /**
  * represents a utility class
  */
-public abstract class Utils {
+public class Utils{
+
+    /**
+     * Util utility class should not be initialized
+     */
+    private Utils(){
+    }
 
     /**
      * swap two elements in given array
